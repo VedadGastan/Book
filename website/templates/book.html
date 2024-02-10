@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Book{% endblock title %}
+
+{% block body %}
+<div class="filler bg-dark"></div>
+
+<div class="book bg-light py-5">
+    <div class="container row align-items-center mx-auto">
+        <div class="col d-flex">
+            <img class="book" src="{% static './images/book-cover.png' %}" alt="book">
+        </div>
+        <div class="col">
+            <h1>Book</h1>
+            <hr class="divider-dark pb-3">
+            <p class="pb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
+                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
+                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
+                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
+                Cras efficitur id mauris at sollicitudin.<br><br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
+                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
+                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
+                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
+                Cras efficitur id mauris at sollicitudin.<br><br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
+                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
+                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
+                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
+                Cras efficitur id mauris at sollicitudin.
+            </p>
+            <a class="btn btn-dark test-light px-5 py-3 mb-5 mt-2  rounded-pill" href="#" role="button" style="font-size:18px"><b>Buy Now</b></a>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
