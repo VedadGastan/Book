@@ -5,9 +5,10 @@
         <h2>Newsletter</h2>
         <hr class="divider-center-dark pb-3">
         <p>Subscribe to our newsletter to get the latest information or smthing</p>
-        <form class="mt-4 fs-4">
+        <form class="mt-4 fs-4" method="POST" action="{% url "home" %}">
+            {% csrf_token %}
             <div class="mb-3">
-              <input style="font-size: 18px" type="email" class="form-control rounded-pill py-3 px-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+              <input style="font-size: 18px" type="email" name='email' class="form-control rounded-pill py-3 px-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
             </div>
     
             <button type="submit" class="submit btn btn-dark px-5 py-3 rounded-pill" style="width:100%; font-size: 18px"><b>Submit</b></button>

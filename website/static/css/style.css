@@ -9,7 +9,8 @@
 .banner-home {
     background-image: url('../images/banner-img.jpg');
     background-size: cover;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
+    align-items: center;
 }
 
 .filler{
@@ -18,7 +19,8 @@
 
 .banner-home .container {
     height: 100%;
-    padding-top: 108px;
+    padding-top: 128px;
+    min-height: 80vh;
 }
 
 .book-description {
@@ -27,7 +29,7 @@
 }
 
 .book-image img {
-    width: 280px;
+    width: 360px;
 }
 
 hr.divider{
@@ -81,29 +83,179 @@ hr.divider-center-dark{
     width: 600px;
 }
 
+
+.picture img{
+    width: 360px;
+    padding-bottom: 30px;
+}
+
+.messages {
+    transition: 0.5s;
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    pointer-events: none;
+    position: fixed;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
+    box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
+}
+.messages ul{
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.animate { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    animation-fill-mode: both; 
+    -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut{
+    from {
+        opacity:1;
+    } to {
+        opacity:0;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity:1;
+    } to {
+        opacity:0;
+    }
+}
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeIn{
+    from { 
+        opacity:0;
+    } to {
+        opacity:1;
+    }
+}
+@keyframes fadeIn {
+    from { 
+        opacity:0;
+    } to {
+        opacity:1;
+    }
+}
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeLeft{
+    from { 
+        opacity:0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    } to {
+        opacity:1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeLeft {
+    from { 
+        opacity:0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    } to {
+        opacity:1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeLeft {
+    -webkit-animation-name: fadeLeft;
+    animation-name: fadeLeft;
+}
+
+@-webkit-keyframes fadeRight{
+    from { 
+        opacity:0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    } to {
+        opacity:1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeRight {
+    from { 
+        opacity:0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    } to {
+        opacity:1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeRight {
+    -webkit-animation-name: fadeRight;
+    animation-name: fadeRight;
+}
+
 @media (max-width: 1200px) {
     .book img {
         width: 80vw;
         margin: auto;
         padding-bottom: 20px;
     }
-    .book {
+    .book{
         text-align: center;
     }
     .book hr.divider-dark{
         width: 20%;
         margin: auto;
     }
+    .about .col-7{
+        text-align: center;
+        width: 100%;
+    }
+    .about .sm-icons{
+        justify-content: center;
+        padding-bottom: 10px;
+    }
+    .about hr.divider-dark{
+        width: 20%;
+        margin: auto;
+    }
+    .book-image img {
+        width: 260px;
+    }
 }
 
 @media (max-width: 991px) {
+    .picture img{
+        width: 260px;
+        padding-bottom: 20px;
+    }
+    
+    .author-desc{
+        text-align: center!important;
+    }
+
+    .about-author .container{
+        flex-direction: column;
+    }
     .sidebar {
         background-color: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(10px);
     }
-    .banner-home {
-        height: 740px;
-    }
+
     .banner-home .container {
         height: auto;
         padding-top: 130px;
@@ -122,24 +274,24 @@ hr.divider-center-dark{
         width: 200px;
     }
     hr.divider{
-        width: 50%;
+        width: 20%;
         margin: auto;
     }
     hr.divider-dark{
         width: 20%;
         margin: auto;
     }
-    .about .col-7{
-        text-align: center;
-        width: 100%;
-    }
-    .about .sm-icons{
-        justify-content: center;
-        padding-bottom: 10px;
-    }
+    
     .newsletter form{
         width: 100%;
     }
+    img.author{
+        width: 260px;
+    }
     
-    
+}
+@media (max-width: 300px) {
+    img.author{
+        width: 200px;
+    }
 }
