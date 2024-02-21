@@ -13,7 +13,7 @@
             <p class="long-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar, ligula sed cursus hendrerit, enim velit ornare lacus, 
             vel tempor purus elit eget arcu. Praesent ac ipsum nisl. Phasellus odio augue, fermentum non urna vel, volutpat finibus magna.</p>
 
-            <a class="btn btn-light px-5 py-2 mb-5 mt-2 rounded-pill" href="#" role="button" style="font-size:18px"><b>Buy Now</b></a>
+            <a class="btn btn-light px-5 py-2 mb-5 mt-2 rounded-pill" href="{% url 'book' %}" role="button" style="font-size:18px"><b>Buy Now</b></a>
         </div>
         <div class="book-image col px-3 tab-pane animate fadeRight">
             <a href="{% url 'book' %}"><img src="{% static './images/book-cover.png' %}" alt="book-cover"></a>

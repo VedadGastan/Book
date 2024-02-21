@@ -89,6 +89,11 @@ hr.divider-center-dark{
     padding-bottom: 30px;
 }
 
+.back_home {
+    --bs-btn-bg: rgb(56, 193, 114)!important;
+    --bs-btn-border-color: rgb(56, 193, 114)!important;
+}
+
 .messages {
     transition: 0.5s;
     animation-delay: 2s;

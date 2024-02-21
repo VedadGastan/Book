@@ -24,3 +24,6 @@ def about(request):
 
 def book(request):
     return render(request, "book.html", {})
+
+def success(request):
+    return render(request, "success.html", {})
