@@ -60,11 +60,11 @@
                         </li>
                         {% url 'book' as url %}
                         <li class="nav-item dropdown mx-2">
-                            <a class="nav-link dropdown-toggle {% if request.path == url %}active{% endif %}" href="{% url 'book' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle {% if request.path == url %}active{% endif %}" href="{% url 'book' 1 %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Books
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item {% if request.path == url %}active{% endif %}" href="{% url 'book' %}">Book</a></li>
+                                <li><a class="dropdown-item {% if request.path == url %}active{% endif %}" href="{% url 'book' 1 %}">Book</a></li>
                             </ul>
                         </li>
                     </ul>

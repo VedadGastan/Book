@@ -7,16 +7,16 @@
 <section class="banner-home text-light">
     <div class="container mx-auto row align-items-center">
         <div class="book-description col-7 animate fadeLeft">
-            <a href="{% url 'book' %}" style="color: white; text-decoration: none;"><h2 class="name">Book Name</h2></a>
+            <a href="{% url 'book' 1 %}" style="color: white; text-decoration: none;"><h2 class="name">Book Name</h2></a>
             <hr class="divider pb-3">
             <h4 class="short-desc">Some random text</h4>
             <p class="long-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar, ligula sed cursus hendrerit, enim velit ornare lacus, 
             vel tempor purus elit eget arcu. Praesent ac ipsum nisl. Phasellus odio augue, fermentum non urna vel, volutpat finibus magna.</p>
 
-            <a class="btn btn-light px-5 py-2 mb-5 mt-2 rounded-pill" href="{% url 'book' %}" role="button" style="font-size:18px"><b>Buy Now</b></a>
+            <a class="btn btn-light px-5 py-2 mb-5 mt-2 rounded-pill" href="{% url 'book' 1 %}" role="button" style="font-size:18px"><b>Buy Now</b></a>
         </div>
         <div class="book-image col px-3 tab-pane animate fadeRight">
-            <a href="{% url 'book' %}"><img src="{% static './images/book-cover.png' %}" alt="book-cover"></a>
+            <a href="{% url 'book' 1 %}"><img src="{% static './images/book-cover.png' %}" alt="book-cover"></a>
         </div>
     </div>
 </section>

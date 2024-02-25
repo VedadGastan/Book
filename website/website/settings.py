@@ -134,3 +134,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'app.NewUser'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OmFfOFUBznuiHcl2ehY3QBoU5DtI3bK5Gt7tXKqVvui6K9C9LTgrVz0DsK2xFlpRP7rXpMC9RIUZoCexpm0chmI00L9y0ZjBL'
+STRIPE_SECRET_KEY = 'sk_test_51OmFfOFUBznuiHclpgWvivCC1IBMKB3IQMs60F0aB9Yt1XF7pbvWsiJ8ZlquDoRDUgbWcCD3EXuQztre7YM7V4zo00g3H1xKrq'
+STRIPE_WEBHOOK_SECRET = ''
+DOMAIN = 'http://127.0.0.1:8000'
