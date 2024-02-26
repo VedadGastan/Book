@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    font-family: "Open Sans", sans-serif;
+}
+
 .navbar{
     width: 100%;
 }
+
 .banner-home {
     background-image: url('../images/banner-img.jpg');
     background-size: cover;
@@ -20,7 +27,7 @@
 .banner-home .container {
     height: 100%;
     padding-top: 128px;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 
 .book-description {
@@ -36,7 +43,7 @@ hr.divider{
     border-top: 3px solid white;
     border-bottom: none;
     opacity: 1;
-    width: 80px;
+    width: 60px;
 }
 .divider {
     margin: 0;
@@ -244,6 +251,9 @@ hr.divider-center-dark{
 }
 
 @media (max-width: 991px) {
+    a.affiliate_btn{
+        margin-top: 16px;
+    }
     .picture img{
         width: 260px;
         padding-bottom: 20px;

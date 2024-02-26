@@ -33,7 +33,7 @@
                 Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
                 Cras efficitur id mauris at sollicitudin.
             </p>
-            <form action="{% url 'create-checkout-session' 1 %}" method="POST">
+            <form action="{% url 'create-checkout-session' new_code %}" method="POST">
                 {% csrf_token %}
                 <button class="btn btn-dark test-light px-5 py-3 mb-5 mt-2  rounded-pill"  style="font-size:18px" type="submit" id="checkout-button"><b>Buy Now</b></button>
             </form>

@@ -5,19 +5,19 @@ from django.contrib.auth.admin import UserAdmin
 @admin.register(NewUser)
 class MyUserAdmin(UserAdmin):
         model = NewUser
-        list_display = ('user_name', 'email', 'code')
-        list_filter = ('user_name', 'email')
-        search_fields = ('user_name', )
-        ordering = ('user_name', )
+        list_display = ('username', 'email', 'code')
+        list_filter = ('username', 'email')
+        search_fields = ('username', )
+        ordering = ('username', )
         filter_horizontal = ()
         fieldsets = (
-                (None, {'fields': ('user_name', 'email', 'code', 'balance')}),
+                (None, {'fields': ('username', 'email', 'code', 'secondary_code', 'balance')}),
                 ('Permissions', {'fields': ('is_staff', 'is_superuser')}),
         )
         add_fieldsets = (
             (None, {
                 'classes': ('wide',),
-                'fields': ('user_name', 'password1', 'password2', 'code'),
+                'fields': ('username', 'password1', 'password2', 'code'),
             }),
     )
         

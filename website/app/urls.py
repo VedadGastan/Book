@@ -8,9 +8,11 @@ urlpatterns = [
     path('', home, name='home'),
     path('about', about, name='about'),
     path('book/<code>', book, name='book'),
-    path('success/<code>', success, name='success'),
-    path('cancel/<code>', cancel, name='cancel'),
-    path('create-checkout-session/<code>/', checkout, name='create-checkout-session')
+    path('success/<new_code>', success, name='success'),
+    path('cancel/<new_code>', cancel, name='cancel'),
+    path('create-checkout-session/<new_code>/', checkout, name='create-checkout-session'),
+    path('signup', sign_up, name='signup'),
+    path('login', log_in, name='login'),
+    path('logout', log_out, name='logout'),
 
-    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
