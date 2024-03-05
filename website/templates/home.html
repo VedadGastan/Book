@@ -4,6 +4,9 @@
 {% block title %}Home{% endblock title %}
 
 {% block body %}
+
+<script src="https://kit.fontawesome.com/59e374730d.js" crossorigin="anonymous"></script>
+
 <section class="banner-home text-light">
     <div class="container mx-auto row align-items-center">
         <div class="book-description col-7 animate fadeLeft">
@@ -17,6 +20,34 @@
         </div>
         <div class="book-image col px-3 tab-pane animate fadeRight">
             <a href="{% url 'book' 1 %}"><img src="{% static './images/book-cover.png' %}" alt="book-cover"></a>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class='h2 text-center'>Become an affiliate</h2>
+        <hr class="divider-center-dark pb-3">
+        <p class="text-center">Sign up and become a part of our affiliate program, earning commissions of 50% for each sale you get using your affiliate link.</p>
+        <div class="row text-center mt-5">
+            <div class="col">
+                <i class="fa-solid fa-user-plus" style="color: #212529; font-size: 100px;"></i>
+                <h5 class="h5 mt-4">Create an account</h5>
+                <p>Create an account using the button <br> below and follow the steps</p>
+            </div>
+            <div class="col">
+                <i class="fa-solid fa-link" style="color: #212529; font-size: 100px;"></i>
+                <h5 class="h5 mt-4">Get your affiliate link</h5>
+                <p>After creating your account, navigate <br> to the dashboard and copy your <br> affiliate link</p>
+            </div>
+            <div class="col">
+                <i class="fa-solid fa-sack-dollar" style="color: #212529; font-size: 100px;"></i>
+                <h5 class="h5 mt-4">Get 50% commission</h5>
+                <p>Every time someone uses your link to <br> purchase our book, you get half <br> of the money</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <a class="btn btn-dark px-5 py-2 mb-5 mt-2  rounded-pill" href="{% url 'signup' %}" role="button" style="font-size:18px"><b>Sign Up</b></a>
         </div>
     </div>
 </section>

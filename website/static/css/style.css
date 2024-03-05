@@ -21,7 +21,7 @@ body{
 }
 
 .filler{
-    height: 108px;
+    height: 97px;
 }
 
 .banner-home .container {
@@ -121,11 +121,94 @@ hr.divider-center-dark{
     list-style: none;
 }
 
+h1.welcome {
+    margin: 0;
+}
+a.get_paid {
+    font-size: 18px;
+}
+
+.copy-text { 
+    position:relative; 
+    padding: 10px; 
+    background: #fff; 
+    border:1px solid #ddd; 
+    border-radius:10px; 
+    display: flex;
+}
+
+.table td{
+    padding: 14px;
+}
+
+.copy-text input.text { 
+    padding: 10px; 
+    font-size: 18px; 
+    color:#555; 
+    border:none; 
+    outline:none;
+    width: 90%;
+}
+
+.copy-text span {
+    padding: 10px;
+    background: #212529;
+    color :#fff;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    cursor:pointer;
+    position: absolute;
+    right: 14px;
+}
+
+.copy-text span:active { 
+    background: #3f3f3f;
+}
+.copy-text span:before { 
+    content: "Copied"; 
+    position:absolute;
+    font-family: "Open Sans", sans-serif!important;
+    top: -45px; 
+    right: 0px; 
+    background: #212529; 
+    padding: 8px 10px; 
+    border-radius:20px; 
+    font-size:15px;
+    display: none!important;
+}
+.copy-text span:after {
+    content:""; 
+    position:absolute; 
+    top: -20px; 
+    right: 18px; 
+    width:10px; 
+    height: 10px;
+    background: #212529;
+    transform: rotate(45deg);
+    display: none!important;
+}
+
+.copy-text.active span:after,
+.copy-text.active span:before {
+    display: block!important;
+}
+
 .animate { 
     -webkit-animation-duration: 1s; 
     animation-duration: 1s; 
     animation-fill-mode: both; 
     -webkit-animation-fill-mode: both;
+}
+
+a.login_btn{
+    border: 1px white solid;
+    color: white;
+    margin-right: 16px;
+}
+
+a.login_btn:hover {
+    background-color: white;
 }
 
 @-webkit-keyframes fadeOut{

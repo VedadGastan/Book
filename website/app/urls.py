@@ -10,9 +10,10 @@ urlpatterns = [
     path('book/<code>', book, name='book'),
     path('success/<new_code>', success, name='success'),
     path('cancel/<new_code>', cancel, name='cancel'),
-    path('create-checkout-session/<new_code>/', checkout, name='create-checkout-session'),
+    path('create-checkout-session/<new_code>', checkout, name='create-checkout-session'),
     path('signup', sign_up, name='signup'),
     path('login', log_in, name='login'),
     path('logout', log_out, name='logout'),
+    path('dashboard', dashboard, name='dashboard'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
