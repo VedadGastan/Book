@@ -84,7 +84,15 @@ def sign_up(request):
 
             user = authenticate(request, username=username, password=password)
             login(request, user)
-            return redirect('home')
+
+            stripe_account = stripe.Account.create(type="express")
+            stripe.AccountLink.create(
+                account = stripe_account.id,
+                refresh_url = settings.DOMAIN + "/dashboard",
+                return_url = settings.DOMAIN + "/delete",
+                type = "account_onboarding",
+            )
+            return redirect('dashboard')
 
     return render(request, "signup.html", {'form':form})
 
@@ -107,6 +115,12 @@ def log_out(request):
     logout(request)
     return redirect('login')
 
+@login_required
+def delete(request):
+    user = request.user
+    user.delete()
+    messages.info(request, "Your account has been deleted.")
+    return redirect('home')
 
 @login_required
 def dashboard(request):
@@ -131,3 +145,15 @@ def dashboard(request):
     }
 
     return render(request, "dashboard.html", context)
+
+@login_required
+def payout(request):
+    user = request.user
+    stripe_id = user.stripe_id
+    ammount = user.balance
+    transfer = stripe.Transfer.create(
+        amount=ammount,
+        currency="usd",
+        destination=stripe_id,
+    )
+    return redirect('dashboard')

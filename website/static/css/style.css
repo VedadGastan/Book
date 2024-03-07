@@ -136,7 +136,9 @@ a.get_paid {
     border-radius:10px; 
     display: flex;
 }
-
+table{
+    overflow-x:auto
+}
 .table td{
     padding: 14px;
 }
@@ -334,6 +336,9 @@ a.login_btn:hover {
 }
 
 @media (max-width: 991px) {
+    p{
+        font-size: 14px;
+    }
     a.affiliate_btn{
         margin-top: 16px;
     }
@@ -389,6 +394,23 @@ a.login_btn:hover {
     
 }
 @media (max-width: 300px) {
+    .col i{
+        font-size: 70px!important;
+    }
+    .copy-text span {
+        right: 0;
+        top: 0;
+    }
+    .copy-text input.text{
+        padding: 0;
+        font-size: 16px;
+    }
+    p{
+        font-size: 14px;
+    }
+    a.get_paid{
+        font-size: 14px;
+    }
     img.author{
         width: 200px;
     }

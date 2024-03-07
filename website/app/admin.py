@@ -11,7 +11,7 @@ class MyUserAdmin(UserAdmin):
         ordering = ('username', )
         filter_horizontal = ()
         fieldsets = (
-                (None, {'fields': ('username', 'email', 'code', 'secondary_code', 'balance', 'clicks', 'sales')}),
+                (None, {'fields': ('username', 'email', 'stripe_id', 'code', 'secondary_code', 'balance', 'clicks', 'sales')}),
                 ('Permissions', {'fields': ('is_staff', 'is_superuser')}),
         )
         add_fieldsets = (

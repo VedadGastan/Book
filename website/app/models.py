@@ -58,16 +58,14 @@ class CustomAccountManager(BaseUserManager):
 class NewUser(AbstractUser):
     email = models.EmailField(gettext_lazy('email address'), unique=True) 
     username = models.CharField(max_length=150, unique=True) 
-    
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-
     code = models.CharField(max_length=150, default=generate_code())
     secondary_code = models.CharField(max_length=150, blank=True, null=True, unique=True)
     balance = models.IntegerField(default=0)
     clicks = models.IntegerField(default=0)
     sales = models.IntegerField(default=0)
-    
+    stripe_id = models.CharField(max_length=200, blank=True, null=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'username'
