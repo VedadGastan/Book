@@ -233,6 +233,16 @@ input {
     input:focus:-moz-placeholder {
       color: #222; }
 
+select{
+  width: 100%;
+  display: block!important;
+  border: none!important;
+  border-bottom: 1px solid #999!important;
+  padding: 6px 30px!important;
+  box-sizing: border-box!important;
+  color: #999;
+}
+
 input[type=checkbox]:not(old) {
   width: 2em;
   margin: 0;

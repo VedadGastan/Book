@@ -49,6 +49,7 @@ def cancel(request, new_code):
 
 
 def home(request):
+
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -83,17 +84,38 @@ def sign_up(request):
             password = form.cleaned_data['password1']
 
             user = authenticate(request, username=username, password=password)
-            login(request, user)
+            user.country = request.POST.get('country')
+            user.save()
+            
+            stripe_account = stripe.Account.create(
+                type="express",
+                country=user.country,
+                email= user.email,
+                capabilities={
+                    "card_payments": {"requested": True},
+                    "transfers": {"requested": True},
+                },
+                business_type = 'individual',
+                business_profile= {
+                    "mcc": 5815,
+                    "url": "https://www.instagram.com/dincosic/",
+                }
+            )
 
-            stripe_account = stripe.Account.create(type="express")
-            stripe.AccountLink.create(
+            link = stripe.AccountLink.create(
                 account = stripe_account.id,
-                refresh_url = settings.DOMAIN + "/dashboard",
-                return_url = settings.DOMAIN + "/delete",
+                refresh_url = settings.DOMAIN + "/delete",
+                return_url = settings.DOMAIN + "/dashboard",
                 type = "account_onboarding",
             )
-            return redirect('dashboard')
-
+            if(stripe_account.id and link):
+                user.stripe_id = stripe_account.id
+                user.save()
+                login(request, user)
+                return redirect(link.url)
+            user.delete()
+            messages.info(request, "An error occurred while creating your account. Please try again!")
+            return redirect("signup")
     return render(request, "signup.html", {'form':form})
 
 
@@ -118,8 +140,11 @@ def log_out(request):
 @login_required
 def delete(request):
     user = request.user
+    if(user.stripe_id):
+        stripe_id = user.stripe_id
+        stripe.Account.delete(stripe_id)
     user.delete()
-    messages.info(request, "Your account has been deleted.")
+    messages.info(request, "An error occurred while creating your account. Please try again!")
     return redirect('home')
 
 @login_required
