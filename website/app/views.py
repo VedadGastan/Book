@@ -14,18 +14,30 @@ def checkout(request, new_code):
     if request.method == "POST":
         domain = settings.DOMAIN
         if settings.DEBUG:
+            user = NewUser.objects.get(secondary_code=new_code)
             domain = "http://127.0.0.1:8000"
-        checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price': 'price_1OmFklFUBznuiHclWqPnuqzr',
-                    'quantity': 1,
+            checkout_session = stripe.checkout.Session.create(
+                automatic_tax={
+                    "enabled": True, 
+                    "liability": {
+                        "type": "account",
+                        "account" : user.stripe_id,
+                    }
                 },
-            ],
-            mode='payment',
-            success_url = domain + '/success/' + str(new_code),
-            cancel_url = domain + '/cancel/' + str(new_code),
-        )
+                line_items=[
+                    {
+                        'price': 'price_1OmFklFUBznuiHclWqPnuqzr',
+                        'quantity': 1,
+                    },
+                ],
+                mode='payment',
+                payment_intent_data={
+                    "application_fee_amount": 50,
+                    "on_behalf_of":  user.stripe_id,
+                },
+                success_url = domain + '/success/' + str(new_code),
+                cancel_url = domain + '/cancel/' + str(new_code),
+            )
         return redirect(checkout_session.url, code=303)
 
 def success(request, new_code):
@@ -175,10 +187,21 @@ def dashboard(request):
 def payout(request):
     user = request.user
     stripe_id = user.stripe_id
-    ammount = user.balance
+    amount = user.balance
+
+    random_chars = ''.join(random.choices(string.digits, k=8))
+    transfer_group = "ORDER_"+random_chars
+
+    stripe.PaymentIntent.create(
+        amount=amount,
+        currency="usd",
+        transfer_group=transfer_group,
+    )
+
     transfer = stripe.Transfer.create(
-        amount=ammount,
+        amount=amount,
         currency="usd",
         destination=stripe_id,
+        transfer_group=transfer_group,
     )
     return redirect('dashboard')
