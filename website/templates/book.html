@@ -35,7 +35,8 @@
             </p>
             <form action="{% url 'create-checkout-session' new_code %}" method="POST">
                 {% csrf_token %}
-                <button class="btn btn-dark test-light px-5 py-3 mb-5 mt-2  rounded-pill"  style="font-size:18px" type="submit" id="checkout-button"><b>Buy Now</b></button>
+                <button class="btn-center btn btn-dark text-light px-5 mb-3 text-center py-3 mt-2 rounded-pill"  style="font-size:16px; margin-right: 14px" type="submit" id="checkout-button"><b>Buy With Card</b></button>
+                <a href="{% url 'checkout_crypto' new_code  %}" class="btn btn-light text-dark px-5 py-3 mb-3 mt-2 border-dark rounded-pill"  style="font-size:16px"><b>Buy With Crypto</b></a>
             </form>
         </div>
     </div>

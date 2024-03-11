@@ -11,6 +11,7 @@ urlpatterns = [
     path('success/<new_code>', success, name='success'),
     path('cancel/<new_code>', cancel, name='cancel'),
     path('create-checkout-session/<new_code>', checkout, name='create-checkout-session'),
+    path('checkout_crypto/<new_code>', checkout_crypto, name='checkout_crypto'),
     path('signup', sign_up, name='signup'),
     path('login', log_in, name='login'),
     path('logout', log_out, name='logout'),

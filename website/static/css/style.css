@@ -393,6 +393,23 @@ a.login_btn:hover {
     }
     
 }
+/*
+@media (max-width: 767px) {
+    .buttons{
+        text-align: right;
+    }
+    .get_paid {
+        margin-right: 0!important;
+        margin-bottom: 8px;
+    }
+}
+*/
+@media (max-width: 505px) {
+    .btn-center{
+        margin-right: 0!important;
+    }
+}
+
 @media (max-width: 300px) {
     .col i{
         font-size: 70px!important;

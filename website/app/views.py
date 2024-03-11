@@ -6,6 +6,8 @@ from .models import *
 from .forms import CreateUserForm
 import stripe
 from django.contrib.auth.decorators import login_required
+import json
+import requests
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -182,3 +184,36 @@ def payout(request):
         destination=stripe_id,
     )
     return redirect('dashboard')
+
+def checkout_crypto(request, new_code):
+    url = "https://api.nowpayments.io/v1/invoice"
+
+    success_url = settings.DOMAIN + '/success/' + str(new_code)
+    cancel_url = settings.DOMAIN + '/cancel/' + str(new_code)
+
+    rand = ''.join(random.choices(string.digits, k=5))
+
+    payload = json.dumps({
+        "price_amount": 0.5,
+        "price_currency": "usd",
+        "order_id": "RGDBP-"+rand,
+        "order_description": "Din Cosic - Book",
+        "ipn_callback_url": "https://nowpayments.io",
+        "success_url": success_url,
+        "cancel_url": cancel_url,
+        "partially_paid_url": cancel_url,
+        "is_fixed_rate": True,
+        "is_fee_paid_by_user": False
+    })
+    headers = {
+    'x-api-key': settings.NOWPAYMENTS_API_KEY,
+    'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    url = json.loads(response.text)["invoice_url"]
+    return redirect(url)
+
+
+
+
