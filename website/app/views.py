@@ -19,23 +19,17 @@ def checkout(request, new_code):
             user = NewUser.objects.get(secondary_code=new_code)
             domain = "http://127.0.0.1:8000"
             checkout_session = stripe.checkout.Session.create(
-                automatic_tax={
-                    "enabled": True, 
-                    "liability": {
-                        "type": "account",
-                        "account" : user.stripe_id,
-                    }
-                },
+                mode='payment',
                 line_items=[
                     {
                         'price': 'price_1OmFklFUBznuiHclWqPnuqzr',
                         'quantity': 1,
                     },
                 ],
-                mode='payment',
                 payment_intent_data={
                     "application_fee_amount": 50,
-                    "on_behalf_of":  user.stripe_id,
+                    "transfer_data": {"destination": user.stripe_id},
+                    "on_behalf_of": user.stripe_id,
                 },
                 success_url = domain + '/success/' + str(new_code),
                 cancel_url = domain + '/cancel/' + str(new_code),
@@ -63,7 +57,6 @@ def cancel(request, new_code):
 
 
 def home(request):
-
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -229,8 +222,8 @@ def checkout_crypto(request, new_code):
         "is_fee_paid_by_user": False
     })
     headers = {
-    'x-api-key': settings.NOWPAYMENTS_API_KEY,
-    'Content-Type': 'application/json'
+        'x-api-key': settings.NOWPAYMENTS_API_KEY,
+        'Content-Type': 'application/json'
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
