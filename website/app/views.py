@@ -151,7 +151,7 @@ def delete(request):
         stripe_id = user.stripe_id
         stripe.Account.delete(stripe_id)
     user.delete()
-    messages.info(request, "An error occurred while creating your account. Please try again!")
+    messages.info(request, "Your account has been deleted")
     return redirect('home')
 
 @login_required
