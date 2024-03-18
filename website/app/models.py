@@ -7,6 +7,7 @@ import string
 import time
 
 def generate_code():
+    random.seed(time.time())
     timestamp = str(int(time.time()))
     random_chars1 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
     random_chars2 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
@@ -23,7 +24,6 @@ class Email(models.Model):
         return self.email
 
 class CustomAccountManager(BaseUserManager):
-
     use_in_migrations = True
 
     def _create_user(self, email, username, password, **other_fields):

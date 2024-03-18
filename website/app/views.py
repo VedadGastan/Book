@@ -22,7 +22,7 @@ def checkout(request, new_code):
                 mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1OmFklFUBznuiHclWqPnuqzr',
+                        'price': 'price_1OviioFUBznuiHclZOsjFzZO',
                         'quantity': 1,
                     },
                 ],
@@ -31,6 +31,7 @@ def checkout(request, new_code):
                     "transfer_data": {"destination": user.stripe_id},
                     "on_behalf_of": user.stripe_id,
                 },
+
                 success_url = domain + '/success/' + str(new_code),
                 cancel_url = domain + '/cancel/' + str(new_code),
             )
@@ -82,6 +83,7 @@ def book(request, code):
     return render(request, "book.html", {'new_code':new_code,})
 
 def sign_up(request):
+    logout(request)
     form = CreateUserForm()
     if request.method=="POST":
         form = CreateUserForm(request.POST)
@@ -157,6 +159,9 @@ def delete(request):
 @login_required
 def dashboard(request):
     user = request.user
+    if(not stripe.Account.retrieve(user.stripe_id)["payouts_enabled"]):
+        messages.info(request, "There has been an error while creating your account, please try again!")
+        return redirect('delete')
     username = user.username
     balance = user.balance / 100
     clicks = user.clicks
@@ -184,19 +189,23 @@ def payout(request):
     stripe_id = user.stripe_id
     amount = user.balance
 
+    random.seed(time.time())
     random_chars = ''.join(random.choices(string.digits, k=8))
     transfer_group = "ORDER_"+random_chars
-
+    '''
     stripe.PaymentIntent.create(
         amount=amount,
         currency="usd",
         transfer_group=transfer_group,
-    )
-
-    transfer = stripe.Transfer.create(
+        on_behalf_of = user.stripe_id,
+        automatic_payment_methods={"enabled": True, "allow_redirects": "never"},
+        transfer_data={"destination": user.stripe_id},
+        confirm=True,
+    )'''
+    stripe.Transfer.create(
         amount=amount,
         currency="usd",
-        destination=stripe_id,
+        destination=user.stripe_id,
         transfer_group=transfer_group,
     )
     return redirect('dashboard')
@@ -210,7 +219,7 @@ def checkout_crypto(request, new_code):
     rand = ''.join(random.choices(string.digits, k=5))
 
     payload = json.dumps({
-        "price_amount": 0.5,
+        "price_amount": 20,
         "price_currency": "usd",
         "order_id": "RGDBP-"+rand,
         "order_description": "Din Cosic - Book",
