@@ -188,11 +188,11 @@ def payout(request):
     user = request.user
     stripe_id = user.stripe_id
     amount = user.balance
-
+    
     random.seed(time.time())
     random_chars = ''.join(random.choices(string.digits, k=8))
     transfer_group = "ORDER_"+random_chars
-    '''
+    
     stripe.PaymentIntent.create(
         amount=amount,
         currency="usd",
@@ -201,13 +201,8 @@ def payout(request):
         automatic_payment_methods={"enabled": True, "allow_redirects": "never"},
         transfer_data={"destination": user.stripe_id},
         confirm=True,
-    )'''
-    stripe.Transfer.create(
-        amount=amount,
-        currency="usd",
-        destination=user.stripe_id,
-        transfer_group=transfer_group,
     )
+
     return redirect('dashboard')
 
 def checkout_crypto(request, new_code):
