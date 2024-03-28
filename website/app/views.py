@@ -8,6 +8,9 @@ import stripe
 from django.contrib.auth.decorators import login_required
 import json
 import requests
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -58,6 +61,16 @@ def cancel(request, new_code):
 
 
 def home(request):
+    subject = 'Account Confirmation - Din Cosic Affiliate'
+    mail_link = "https://www.youtube.com/watch?v=J8x-xoDeJsQ"
+    html_message = """<p>Hi, thank you for becoming a part of our affiliate program! To finish setting up your account, click the link below.</p>
+
+<a href='""" + mail_link + """'>""" + mail_link + """</a>"""
+    plain_message = strip_tags(html_message)
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['gastanvedad@gmail.com', ]
+    send_mail( subject, plain_message, email_from, recipient_list, fail_silently=False )
+
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -80,7 +93,7 @@ def book(request, code):
         user.secondary_code = new_code
         user.clicks += 1
         user.save()
-    return render(request, "book.html", {'new_code':new_code,})
+    return render(request, "book.html", {'new_code':new_code, 'code':code, })
 
 def sign_up(request):
     logout(request)
@@ -95,7 +108,7 @@ def sign_up(request):
             user = authenticate(request, username=username, password=password)
             user.country = request.POST.get('country')
             user.save()
-            
+
             stripe_account = stripe.Account.create(
                 type="express",
                 country=user.country,
@@ -182,28 +195,6 @@ def dashboard(request):
     }
 
     return render(request, "dashboard.html", context)
-
-@login_required
-def payout(request):
-    user = request.user
-    stripe_id = user.stripe_id
-    amount = user.balance
-    
-    random.seed(time.time())
-    random_chars = ''.join(random.choices(string.digits, k=8))
-    transfer_group = "ORDER_"+random_chars
-    
-    stripe.PaymentIntent.create(
-        amount=amount,
-        currency="usd",
-        transfer_group=transfer_group,
-        on_behalf_of = user.stripe_id,
-        automatic_payment_methods={"enabled": True, "allow_redirects": "never"},
-        transfer_data={"destination": user.stripe_id},
-        confirm=True,
-    )
-
-    return redirect('dashboard')
 
 def checkout_crypto(request, new_code):
     url = "https://api.nowpayments.io/v1/invoice"

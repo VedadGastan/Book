@@ -26,11 +26,11 @@ SECRET_KEY = 'django-insecure-06d2+1@%v4%ubbz0f05pvr8a^om600&fng)m%)45e+%0y-gb8n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'gastanvedad@gmail.com'
-EMAIL_HOST_PASSWORD = 'kreejttjqqsigbnj'
+EMAIL_HOST_USER = 'dincosicwebsite@gmail.com'
+EMAIL_HOST_PASSWORD = 'kpnxddfcewbasebh'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 PAYMENT_URL = 'https://buy.stripe.com/test_bIY29ObGjg4BcBGbII'
 ALLOWED_HOSTS = []

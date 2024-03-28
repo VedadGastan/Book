@@ -17,6 +17,5 @@ urlpatterns = [
     path('logout', log_out, name='logout'),
     path('delete', delete, name='delete'),
     path('dashboard', dashboard, name='dashboard'),
-    path('payout', payout, name='payout'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
