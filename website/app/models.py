@@ -68,6 +68,7 @@ class NewUser(AbstractUser):
     stripe_id = models.CharField(max_length=200, blank=True, null=True)
     objects = CustomAccountManager()
     country = models.CharField(max_length=5, blank=True, null=True)
+    verified = models.BooleanField(default=False)
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 

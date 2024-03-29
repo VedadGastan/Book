@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 import json
 import requests
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -20,7 +19,6 @@ def checkout(request, new_code):
         domain = settings.DOMAIN
         if settings.DEBUG:
             user = NewUser.objects.get(secondary_code=new_code)
-            domain = "http://127.0.0.1:8000"
             checkout_session = stripe.checkout.Session.create(
                 mode='payment',
                 line_items=[
@@ -58,19 +56,7 @@ def cancel(request, new_code):
     return render(request, "cancel.html", {'code':code})
 
 
-
-
 def home(request):
-    subject = 'Account Confirmation - Din Cosic Affiliate'
-    mail_link = "https://www.youtube.com/watch?v=J8x-xoDeJsQ"
-    html_message = """<p>Hi, thank you for becoming a part of our affiliate program! To finish setting up your account, click the link below.</p>
-
-<a href='""" + mail_link + """'>""" + mail_link + """</a>"""
-    plain_message = strip_tags(html_message)
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['gastanvedad@gmail.com', ]
-    send_mail( subject, plain_message, email_from, recipient_list, fail_silently=False )
-
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -109,36 +95,54 @@ def sign_up(request):
             user.country = request.POST.get('country')
             user.save()
 
-            stripe_account = stripe.Account.create(
-                type="express",
-                country=user.country,
-                email= user.email,
-                capabilities={
-                    "card_payments": {"requested": True},
-                    "transfers": {"requested": True},
-                },
-                business_type = 'individual',
-                business_profile= {
-                    "mcc": 5815,
-                    "url": "https://www.instagram.com/dincosic/",
-                }
-            )
+            subject = 'Account Confirmation - Din Cosic Affiliate'
+            mail_link = settings.DOMAIN + '/verify_account/' + user.code
+            html_message = """<p>Hi """+ user.username +""", thank you for becoming a part of our affiliate program! To finish setting up your account, click the link below.</p>
 
-            link = stripe.AccountLink.create(
-                account = stripe_account.id,
-                refresh_url = settings.DOMAIN + "/delete",
-                return_url = settings.DOMAIN + "/dashboard",
-                type = "account_onboarding",
-            )
-            if(stripe_account.id and link):
-                user.stripe_id = stripe_account.id
-                user.save()
-                login(request, user)
-                return redirect(link.url)
-            user.delete()
-            messages.info(request, "An error occurred while creating your account. Please try again!")
-            return redirect("signup")
+<a href='""" + mail_link + """'>""" + mail_link + """</a>"""
+            plain_message = strip_tags(html_message)
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email, ]
+            send_mail( subject, plain_message, email_from, recipient_list, fail_silently=False )
+
+            messages.success(request, "Check your email to verify your account.")
+            return redirect('home')
+
     return render(request, "signup.html", {'form':form})
+
+def verify_account(request, code):
+    user = NewUser.objects.get(code=code)
+    user.verified = True
+    stripe_account = stripe.Account.create(
+        type="express",
+        country=user.country,
+        email= user.email,
+        capabilities={
+            "card_payments": {"requested": True},
+            "transfers": {"requested": True},
+        },
+        business_type = 'individual',
+        business_profile= {
+            "mcc": 5815,
+            "url": "https://www.instagram.com/dincosic/",
+        }
+    )
+
+    link = stripe.AccountLink.create(
+        account = stripe_account.id,
+        refresh_url = settings.DOMAIN + "/delete",
+        return_url = settings.DOMAIN + "/dashboard",
+        type = "account_onboarding",
+    )
+    if(stripe_account.id and link):
+        user.stripe_id = stripe_account.id
+        user.save()
+        login(request, user)
+        return redirect(link.url)
+    
+    user.delete()
+    messages.info(request, "An error occurred while creating your account. Please try again!")
+    return redirect("signup")
 
 
 def log_in(request):
@@ -160,41 +164,62 @@ def log_out(request):
     return redirect('login')
 
 @login_required
-def delete(request):
+def delete_mail(request):
     user = request.user
+    subject = 'Account deletion - Din Cosic Affiliate'
+    mail_link = settings.DOMAIN + '/delete/' + user.code
+    html_message = """<p>We are sorry to se you go! To proceed with deleting your account, click the link below.</p>
+
+<a href='""" + mail_link + """'>""" + mail_link + """</a>"""
+    plain_message = strip_tags(html_message)
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [user.email, ]
+    send_mail( subject, plain_message, email_from, recipient_list, fail_silently=False )
+
+    messages.success(request, "Go to your email, to finalize deleting your account.")
+    return redirect('dashboard')
+
+@login_required
+def delete(request, code):
+    user = NewUser.objects.get(code=code)
     if(user.stripe_id):
         stripe_id = user.stripe_id
         stripe.Account.delete(stripe_id)
     user.delete()
-    messages.info(request, "Your account has been deleted")
+    messages.success(request, "Your account has been deleted")
     return redirect('home')
 
 @login_required
 def dashboard(request):
     user = request.user
-    if(not stripe.Account.retrieve(user.stripe_id)["payouts_enabled"]):
-        messages.info(request, "There has been an error while creating your account, please try again!")
-        return redirect('delete')
-    username = user.username
-    balance = user.balance / 100
-    clicks = user.clicks
-    sales = user.sales
-    code = settings.DOMAIN + '/book/' + user.code
-    if(clicks!=0):
-        conversion = int(sales/clicks*100)
-    else:
-        conversion = 0
 
-    context = {
-        'username' : username, 
-        'balance' : balance,
-        'clicks' : clicks,
-        'sales' : sales,
-        'code' : code,
-        'conversion' : conversion,
-    }
+    if(user.verified):
+        if(not stripe.Account.retrieve(user.stripe_id)["payouts_enabled"]):
+            messages.info(request, "There has been an error while creating your account, please try again!")
+            return redirect('delete', user.code)
+        username = user.username
+        balance = user.balance / 100
+        clicks = user.clicks
+        sales = user.sales
+        code = settings.DOMAIN + '/book/' + user.code
+        if(clicks!=0):
+            conversion = int(sales/clicks*100)
+        else:
+            conversion = 0
 
-    return render(request, "dashboard.html", context)
+        context = {
+            'username' : username, 
+            'balance' : balance,
+            'clicks' : clicks,
+            'sales' : sales,
+            'code' : code,
+            'conversion' : conversion,
+            'user_code' :  user.code,
+        }
+
+        return render(request, "dashboard.html", context)
+    
+    return redirect('home')
 
 def checkout_crypto(request, new_code):
     url = "https://api.nowpayments.io/v1/invoice"

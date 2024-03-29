@@ -67,7 +67,7 @@
                                 <li><a class="dropdown-item {% if request.path == url %}active{% endif %}" href="{% url 'book' 1 %}">Book</a></li>
                             </ul>
                         </li>
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user.verified %}
                         {% url 'dashboard' as url %}
                         <li class="nav-item mx-2">
                             <a class="nav-link {% if request.path == url %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
