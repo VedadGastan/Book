@@ -23,15 +23,10 @@ def checkout(request, new_code):
                 mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1OviioFUBznuiHclZOsjFzZO',
+                        'price': 'price_1P8OtFFUBznuiHclMpN8uRhM',
                         'quantity': 1,
                     },
                 ],
-                payment_intent_data={
-                    "application_fee_amount": 50,
-                    "transfer_data": {"destination": user.stripe_id},
-                    "on_behalf_of": user.stripe_id,
-                },
 
                 success_url = domain + '/success/' + str(new_code),
                 cancel_url = domain + '/cancel/' + str(new_code),

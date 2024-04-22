@@ -14,10 +14,11 @@ body{
 }
 
 .banner-home {
-    background-image: url('../images/black-background-with-fabric-texture.jpg');
+    background-image: url('../images/pawel-czerwinski-63a31EJ4vgI-unsplash.jpg');
     background-size: cover;
     padding-bottom: 60px;
     align-items: center;
+    background-position: 50% 20%;
 }
 
 .filler{
@@ -36,7 +37,7 @@ body{
 }
 
 .book-image img {
-    width: 360px;
+    width: 340px;
 }
 
 hr.divider{
@@ -87,12 +88,12 @@ hr.divider-center-dark{
 }
 
 .book img {
-    width: 600px;
+    width: 500px;
 }
 
 
 .picture img{
-    width: 360px;
+    width: 340px;
     padding-bottom: 30px;
 }
 
@@ -307,7 +308,7 @@ a.login_btn:hover {
 
 @media (max-width: 1200px) {
     .book img {
-        width: 80vw;
+        width: 75vw;
         margin: auto;
         padding-bottom: 20px;
     }
@@ -331,7 +332,7 @@ a.login_btn:hover {
         margin: auto;
     }
     .book-image img {
-        width: 260px;
+        width: 240px;
     }
 }
 
@@ -343,7 +344,7 @@ a.login_btn:hover {
         margin-top: 16px;
     }
     .picture img{
-        width: 260px;
+        width: 240px;
         padding-bottom: 20px;
     }
     
@@ -374,7 +375,7 @@ a.login_btn:hover {
         justify-content: center;
     }
     .book-image img {
-        width: 200px;
+        width: 180px;
     }
     hr.divider{
         width: 20%;
@@ -389,7 +390,7 @@ a.login_btn:hover {
         width: 100%;
     }
     img.author{
-        width: 260px;
+        width: 240px;
     }
     
 }
@@ -429,6 +430,6 @@ a.login_btn:hover {
         font-size: 14px;
     }
     img.author{
-        width: 200px;
+        width: 180px;
     }
 }

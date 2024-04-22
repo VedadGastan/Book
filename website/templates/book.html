@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}Book{% endblock title %}
+{% block title %}The Dreamer{% endblock title %}
 
 {% block body %}
 <script src="https://js.stripe.com/v3/"></script>
@@ -11,27 +11,17 @@
 <div class="book bg-light py-5">
     <div class="container row align-items-center mx-auto">
         <div class="col d-flex animate fadeIn">
-            <img class="book" src="{% static './images/book-cover.png' %}" alt="book">
+            <img class="book" src="{% static './images/Din - Front.png' %}" alt="book">
         </div>
         <div class="col animate fadeIn">
-            <h1>Book</h1>
+            <h1>The Dreamer</h1>
             <hr class="divider-dark pb-3">
             <p class="pb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
-                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
-                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
-                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
-                Cras efficitur id mauris at sollicitudin.<br><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
-                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
-                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
-                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
-                Cras efficitur id mauris at sollicitudin.<br><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
-                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
-                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
-                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
-                Cras efficitur id mauris at sollicitudin.
+                In the surreal realm of 'The Dreamer,' Salvador, a young man teetering on the brink of adulthood, grapples with the suffocating weight of societal expectations and familial obligations. But within the depths of his own mind, a yearning for liberation sparks an odyssey of universal proportions.
+<br><br>
+From the ethereal landscapes of his dreams to the haunting depths of his subconscious, Salvador's journey blurs the lines between reality and fantasy. Guided by enigmatic figures and haunted by his deepest fears, he confronts the sinister entity Hatman in a battle for his very soul.
+<br><br>
+As Salvador delves deeper into the labyrinth of his psyche, he unearths truths that challenge the very fabric of reality itself. But as he pursues the elusive promise of freedom, one question remains: What is the true cost of chasing one's dreams?
             </p>
             <form action="{% url 'create-checkout-session' new_code %}" method="POST">
                 {% csrf_token %}

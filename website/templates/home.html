@@ -10,16 +10,14 @@
 <section class="banner-home text-light">
     <div class="container mx-auto row align-items-center">
         <div class="book-description col-7 animate fadeLeft">
-            <a href="{% url 'book' 1 %}" style="color: white; text-decoration: none;"><h2 class="name h1">Book Name</h2></a>
+            <a href="{% url 'book' 1 %}" style="color: white; text-decoration: none;"><h2 class="name h1">The Dreamer</h2></a>
             <hr class="divider pb-4">
-            <h4 class="short-desc">Some random text</h4>
-            <p class="long-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar, ligula sed cursus hendrerit, enim velit ornare lacus, 
-            vel tempor purus elit eget arcu. Praesent ac ipsum nisl. Phasellus odio augue, fermentum non urna vel, volutpat finibus magna.</p>
+            <p class="long-desc">In the surreal realm of 'The Dreamer,' Salvador, a young man teetering on the brink of adulthood, grapples with the suffocating weight of societal expectations and familial obligations. But within the depths of his own mind, a yearning for liberation sparks an odyssey of universal proportions.</p>
 
             <a class="btn btn-light px-5 py-2 mb-5 mt-2 rounded-pill" href="{% url 'book' 1 %}" role="button" style="font-size:18px"><b>Buy Now</b></a>
         </div>
         <div class="book-image col px-3 tab-pane animate fadeRight">
-            <a href="{% url 'book' 1 %}"><img src="{% static './images/book-cover.png' %}" alt="book-cover"></a>
+            <a href="{% url 'book' 1 %}"><img src="{% static './images/Din - Front.png' %}" alt="book-cover"></a>
         </div>
     </div>
 </section>
@@ -28,7 +26,8 @@
     <div class="container">
         <h2 class='h2 text-center'>Become an affiliate</h2>
         <hr class="divider-center-dark pb-3">
-        <p class="text-center">Sign up and become a part of our affiliate program, earning commissions of 50% <br> for each sale you get using your affiliate link.</p>
+        <p class="text-center">Love my book? Thanks. Don't care about it and just want to earn money and help others out? Also great. Join my <span style="color: red" >affiliate</span> program. <br> Help me promote it to people who are genuinely interested and receive 50% of every sale.</p>
+        <br>
         <div class="row text-center mt-5">
             <div class="col">
                 <i class="fa-solid fa-user-plus" style="color: #212529; font-size: 100px;"></i>
@@ -46,6 +45,8 @@
                 <p>Every time someone uses your link to <br> purchase our book, you get half <br> of the money</p>
             </div>
         </div>
+        <br>
+        <p class="text-center" style="font-size: 15px;">P.S: I don't mind if you guys <span style="color: red" >pirate</span> it, but if you're going to share it around, you might as well make some money doing it. <br> By helping me, you can help yourselves.</p>
         <div class="d-flex justify-content-center mt-4">
             <a class="btn btn-dark px-5 py-2 mb-5 mt-2  rounded-pill" href="{% url 'signup' %}" role="button" style="font-size:18px"><b>Sign Up</b></a>
         </div>
@@ -55,17 +56,15 @@
 <section class="about-author bg-dark py-5 text-light">
     <div class="container mx-auto row align-items-center animate fadeIn">
         <div class="picture col d-flex">
-            <img class="author" src="{% static './images/johndoe.jpg' %}" alt="din cosic">
+            <img class="author" src="{% static './images/Din1.jpg' %}" alt="din cosic">
         </div>
         <div class="col author-desc">
             <h2 class="h2">Din Cosic</h2>
             <hr class="divider pb-4">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a ullamcorper magna, in ullamcorper massa. Nulla condimentum elit et leo fermentum commodo. 
-                Aenean rutrum et ligula semper mollis. Maecenas vehicula ultricies tempor. Mauris fringilla blandit neque sit amet pellentesque. 
-                Nam sagittis orci nec ornare consectetur. Aliquam imperdiet leo nulla, in auctor purus congue ut. Nunc auctor purus eu fermentum malesuada. 
-                Phasellus sapien justo, condimentum at elit a, finibus blandit odio. Pellentesque efficitur velit ut eleifend porttitor. 
-                Cras efficitur id mauris at sollicitudin.
+                I'm a young dreamer and writer, born in Zenica, Bosnia and Herzegovina on June 18th, 2001, a couple of years after the Bosnian war.
+                Growing up wasn't all smooth sailing either.
+                I've always been drawn to storytelling, finding comfort in the escapist nature of movies, manga, and anime, especially when life got tough. 
             </p>
             <a class="btn btn-light px-5 py-2 mb-5 mt-2  rounded-pill" href="{% url 'about' %}" role="button" style="font-size:18px"><b>Learn More</b></a>
         </div>
