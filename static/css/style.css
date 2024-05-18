@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: "Open Sans", sans-serif;
 }
 
-.navbar{
+.navbar {
     width: 100%;
 }
 
@@ -21,7 +22,7 @@ body{
     background-position: 50% 20%;
 }
 
-.filler{
+.filler {
     height: 97px;
 }
 
@@ -40,24 +41,25 @@ body{
     width: 340px;
 }
 
-hr.divider{
+hr.divider {
     border-top: 3px solid white;
     border-bottom: none;
     opacity: 1;
     width: 60px;
 }
+
 .divider {
     margin: 0;
 }
 
-hr.divider-dark{
+hr.divider-dark {
     border-top: 3px solid rgb(36, 36, 36);
     border-bottom: none;
     opacity: 1;
     width: 80px;
 }
 
-hr.divider-center-dark{
+hr.divider-center-dark {
     border-top: 3px solid rgb(36, 36, 36);
     border-bottom: none;
     opacity: 1;
@@ -65,24 +67,25 @@ hr.divider-center-dark{
     margin: auto;
 }
 
-.sm-icons{
-    flex-direction: row!important;
+.sm-icons {
+    flex-direction: row !important;
     font-size: 1.2rem;
 }
-.sm-icons .nav-link{
+
+.sm-icons .nav-link {
     margin-right: 0.5rem;
 }
 
-.author{
-    width:400px;
+.author {
+    width: 400px;
     margin: auto;
 }
 
-.about{
+.about {
     padding-block: 70px;
 }
 
-.newsletter form{
+.newsletter form {
     width: 600px;
     margin: auto;
 }
@@ -92,14 +95,14 @@ hr.divider-center-dark{
 }
 
 
-.picture img{
+.picture img {
     width: 340px;
     padding-bottom: 30px;
 }
 
 .back_home {
-    --bs-btn-bg: rgb(56, 193, 114)!important;
-    --bs-btn-border-color: rgb(56, 193, 114)!important;
+    --bs-btn-bg: rgb(56, 193, 114) !important;
+    --bs-btn-border-color: rgb(56, 193, 114) !important;
 }
 
 .messages {
@@ -113,11 +116,12 @@ hr.divider-center-dark{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    -webkit-box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
-    -moz-box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
-    box-shadow: 0px 5px 10px 0px rgba(79,79,79,0.8);
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(79, 79, 79, 0.8);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(79, 79, 79, 0.8);
+    box-shadow: 0px 5px 10px 0px rgba(79, 79, 79, 0.8);
 }
-.messages ul{
+
+.messages ul {
     margin-bottom: 0;
     list-style: none;
 }
@@ -125,86 +129,91 @@ hr.divider-center-dark{
 h1.welcome {
     margin: 0;
 }
+
 a.get_paid {
     font-size: 18px;
 }
 
-.copy-text { 
-    position:relative; 
-    padding: 10px; 
-    background: #fff; 
-    border:1px solid #ddd; 
-    border-radius:10px; 
+.copy-text {
+    position: relative;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     display: flex;
 }
-table{
-    overflow-x:auto
+
+table {
+    overflow-x: auto
 }
-.table td{
+
+.table td {
     padding: 14px;
 }
 
-.copy-text input.text { 
-    padding: 10px; 
-    font-size: 18px; 
-    color:#555; 
-    border:none; 
-    outline:none;
+.copy-text input.text {
+    padding: 10px;
+    font-size: 18px;
+    color: #555;
+    border: none;
+    outline: none;
     width: 90%;
 }
 
 .copy-text span {
     padding: 10px;
     background: #212529;
-    color :#fff;
-    border:none;
-    outline:none;
-    border-radius:10px;
-    cursor:pointer;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
     position: absolute;
     right: 14px;
 }
 
-.copy-text span:active { 
+.copy-text span:active {
     background: #3f3f3f;
 }
-.copy-text span:before { 
-    content: "Copied"; 
-    position:absolute;
-    font-family: "Open Sans", sans-serif!important;
-    top: -45px; 
-    right: 0px; 
-    background: #212529; 
-    padding: 8px 10px; 
-    border-radius:20px; 
-    font-size:15px;
-    display: none!important;
+
+.copy-text span:before {
+    content: "Copied";
+    position: absolute;
+    font-family: "Open Sans", sans-serif !important;
+    top: -45px;
+    right: 0px;
+    background: #212529;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    display: none !important;
 }
+
 .copy-text span:after {
-    content:""; 
-    position:absolute; 
-    top: -20px; 
-    right: 18px; 
-    width:10px; 
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 18px;
+    width: 10px;
     height: 10px;
     background: #212529;
     transform: rotate(45deg);
-    display: none!important;
+    display: none !important;
 }
 
 .copy-text.active span:after,
 .copy-text.active span:before {
-    display: block!important;
+    display: block !important;
 }
 
-.animate { 
-    -webkit-animation-duration: 1s; 
-    animation-duration: 1s; 
-    animation-fill-mode: both; 
+.animate {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
 }
 
-a.login_btn{
+a.login_btn {
     border: 1px white solid;
     color: white;
     margin-right: 16px;
@@ -214,93 +223,117 @@ a.login_btn:hover {
     background-color: white;
 }
 
-@-webkit-keyframes fadeOut{
+@-webkit-keyframes fadeOut {
     from {
-        opacity:1;
-    } to {
-        opacity:0;
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
+
 @keyframes fadeOut {
     from {
-        opacity:1;
-    } to {
-        opacity:0;
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
+
 .fadeOut {
     -webkit-animation-name: fadeOut;
     animation-name: fadeOut;
 }
 
-@-webkit-keyframes fadeIn{
-    from { 
-        opacity:0;
-    } to {
-        opacity:1;
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
+
 @keyframes fadeIn {
-    from { 
-        opacity:0;
-    } to {
-        opacity:1;
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
+
 .fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
 }
 
-@-webkit-keyframes fadeLeft{
-    from { 
-        opacity:0;
+@-webkit-keyframes fadeLeft {
+    from {
+        opacity: 0;
         -webkit-transform: translate3d(-100%, 0, 0);
         transform: translate3d(-100%, 0, 0);
-    } to {
-        opacity:1;
+    }
+
+    to {
+        opacity: 1;
         -webkit-transform: none;
         transform: none;
     }
 }
+
 @keyframes fadeLeft {
-    from { 
-        opacity:0;
+    from {
+        opacity: 0;
         -webkit-transform: translate3d(-100%, 0, 0);
         transform: translate3d(-100%, 0, 0);
-    } to {
-        opacity:1;
+    }
+
+    to {
+        opacity: 1;
         -webkit-transform: none;
         transform: none;
     }
 }
+
 .fadeLeft {
     -webkit-animation-name: fadeLeft;
     animation-name: fadeLeft;
 }
 
-@-webkit-keyframes fadeRight{
-    from { 
-        opacity:0;
+@-webkit-keyframes fadeRight {
+    from {
+        opacity: 0;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-    } to {
-        opacity:1;
+    }
+
+    to {
+        opacity: 1;
         -webkit-transform: none;
         transform: none;
     }
 }
+
 @keyframes fadeRight {
-    from { 
-        opacity:0;
+    from {
+        opacity: 0;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-    } to {
-        opacity:1;
+    }
+
+    to {
+        opacity: 1;
         -webkit-transform: none;
         transform: none;
     }
 }
+
 .fadeRight {
     -webkit-animation-name: fadeRight;
     animation-name: fadeRight;
@@ -312,49 +345,62 @@ a.login_btn:hover {
         margin: auto;
         padding-bottom: 20px;
     }
-    .book{
+
+    .book {
         text-align: center;
     }
-    .book hr.divider-dark{
+
+    .book hr.divider-dark {
         width: 20%;
         margin: auto;
     }
-    .about .col-7{
+
+    .about .col-7 {
         text-align: center;
         width: 100%;
     }
-    .about .sm-icons{
+
+    .about .sm-icons {
         justify-content: center;
         padding-bottom: 10px;
     }
-    .about hr.divider-dark{
+
+    .about hr.divider-dark {
         width: 20%;
         margin: auto;
     }
+
     .book-image img {
         width: 240px;
     }
 }
 
 @media (max-width: 991px) {
-    p{
+    p {
         font-size: 14px;
     }
-    a.affiliate_btn{
+
+    a.login_btn {
+        margin-top: 16px !important;
+    }
+
+    a.affiliate_btn {
         margin-top: 16px;
     }
-    .picture img{
+
+    .picture img {
         width: 240px;
         padding-bottom: 20px;
     }
-    
-    .author-desc{
-        text-align: center!important;
+
+    .author-desc {
+        text-align: center !important;
     }
 
-    .about-author .container{
+    .about-author .container {
         flex-direction: column;
     }
+
     .sidebar {
         background-color: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(10px);
@@ -364,36 +410,43 @@ a.login_btn:hover {
         height: auto;
         padding-top: 130px;
     }
+
     .book-description {
         padding-left: 0;
-        text-align: center!important;
+        text-align: center !important;
         width: 100%;
         padding-right: 0;
     }
+
     .book-image {
         display: flex;
         justify-content: center;
     }
+
     .book-image img {
         width: 180px;
     }
-    hr.divider{
+
+    hr.divider {
         width: 20%;
         margin: auto;
     }
-    hr.divider-dark{
+
+    hr.divider-dark {
         width: 20%;
         margin: auto;
     }
-    
-    .newsletter form{
+
+    .newsletter form {
         width: 100%;
     }
-    img.author{
+
+    img.author {
         width: 240px;
     }
-    
+
 }
+
 /*
 @media (max-width: 767px) {
     .buttons{
@@ -406,30 +459,39 @@ a.login_btn:hover {
 }
 */
 @media (max-width: 505px) {
-    .btn-center{
-        margin-right: 0!important;
+    .btn-center {
+        margin-right: 0 !important;
+    }
+
+    .row {
+        flex-direction: column;
     }
 }
 
 @media (max-width: 300px) {
-    .col i{
-        font-size: 70px!important;
+    .col i {
+        font-size: 70px !important;
     }
+
     .copy-text span {
         right: 0;
         top: 0;
     }
-    .copy-text input.text{
+
+    .copy-text input.text {
         padding: 0;
         font-size: 16px;
     }
-    p{
+
+    p {
         font-size: 14px;
     }
-    a.get_paid{
+
+    a.get_paid {
         font-size: 14px;
     }
-    img.author{
+
+    img.author {
         width: 180px;
     }
 }
