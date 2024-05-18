@@ -21,14 +21,14 @@
         </div>
         <div class="success text-center animate fadeIn">
             <h1 class="pb-1">Payment Successful</h1>
-            <p>If the download hasn't started automatically, click <a class="text-success" href="{% static './book/Book.pdf' %}" download >here</a> to download manually</p>
+            <p>If the download hasn't started automatically, click <a class="text-success" href="{% static './book/The Dreamer - Din Cosic.pdf' %}" download >here</a> to download manually</p>
             <a href="{% url 'home' %}" type="button" class="btn btn-success btn-lg px-4 mt-4 back_home" style="--bs-btn-bg: rgb(56, 193, 114)!important;
             --bs-btn-border-color: rgb(56, 193, 114)!important;">Back to homepage</a>
         </div>
     </div>
 
     <div onload="download()"></div>
-    <a id="dl" style="display: none" href="{% static './book/Book.pdf' %}" download>Download</a>
+    <a id="dl" style="display: none" href="{% static './book/The Dreamer - Din Cosic.pdf' %}" download>Download</a>
     <script>
         (function download() {
             document.getElementById('dl').click();

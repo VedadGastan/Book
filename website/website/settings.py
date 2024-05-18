@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-06d2+1@%v4%ubbz0f05pvr8a^om600&fng)m%)45e+%0y-gb8n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'dincosicwebsite@gmail.com'
 EMAIL_HOST_PASSWORD = 'kpnxddfcewbasebh'
@@ -142,4 +142,4 @@ STRIPE_SECRET_KEY = 'sk_test_51OmFfOFUBznuiHclpgWvivCC1IBMKB3IQMs60F0aB9Yt1XF7pb
 STRIPE_WEBHOOK_SECRET = ''
 NOWPAYMENTS_API_KEY = '4123EXJ-H4VM3QD-M3DPD0W-Q6BB7VZ'
 AFFILIATE_PERCENTAGE = 0.5
-DOMAIN = 'http://127.0.0.1:8000'
+DOMAIN = 'https://dincosic.com/'
