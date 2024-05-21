@@ -23,7 +23,7 @@ def checkout(request, new_code):
                 mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1P8OtFFUBznuiHclMpN8uRhM',
+                        'price': 'price_1PEcXnFUBznuiHclofs3NxFA',
                         'quantity': 1,
                     },
                 ],
@@ -225,10 +225,10 @@ def checkout_crypto(request, new_code):
     rand = ''.join(random.choices(string.digits, k=5))
 
     payload = json.dumps({
-        "price_amount": 20,
+        "price_amount": 7.77,
         "price_currency": "usd",
         "order_id": "RGDBP-"+rand,
-        "order_description": "Din Cosic - Book",
+        "order_description": "The Dreamer",
         "ipn_callback_url": "https://nowpayments.io",
         "success_url": success_url,
         "cancel_url": cancel_url,

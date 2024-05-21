@@ -23,6 +23,10 @@ From the ethereal landscapes of his dreams to the haunting depths of his subcons
 <br><br>
 As Salvador delves deeper into the labyrinth of his psyche, he unearths truths that challenge the very fabric of reality itself. But as he pursues the elusive promise of freedom, one question remains: What is the true cost of chasing one's dreams?
             </p>
+            <div class="price">
+                <h5 class="h5">Price:</h5>
+                <h2 class="pb-2 h1">$7.77</h2>
+            </div>
             <form action="{% url 'create-checkout-session' new_code %}" method="POST">
                 {% csrf_token %}
                 <button class="btn-center btn btn-dark text-light px-5 mb-3 text-center py-3 mt-2 rounded-pill"  style="font-size:16px; margin-right: 14px" type="submit" id="checkout-button"><b>Buy With Card</b></button>
