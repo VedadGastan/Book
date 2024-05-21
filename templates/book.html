@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}The Dreamer{% endblock title %}
+
+{% block body %}
+<script src="https://js.stripe.com/v3/"></script>
+
+<div class="filler bg-dark"></div>
+
+<div class="book bg-light py-5">
+    <div class="container row align-items-center mx-auto">
+        <div class="col d-flex animate fadeIn">
+            <img class="book" src="{% static './images/Din - Front.png' %}" alt="book">
+        </div>
+        <div class="col animate fadeIn">
+            <h1>The Dreamer</h1>
+            <hr class="divider-dark pb-3">
+            <p class="pb-2">
+                In the surreal realm of <i>The Dreamer</i>, Salvador, a young man teetering on the brink of adulthood, grapples with the suffocating weight of societal expectations and familial obligations. But within the depths of his own mind, a yearning for liberation sparks an odyssey of universal proportions.
+<br><br>
+From the ethereal landscapes of his dreams to the haunting depths of his subconscious, Salvador's journey blurs the lines between reality and fantasy. Guided by enigmatic figures and haunted by his deepest fears, he confronts the sinister entity Hatman in a battle for his very soul.
+<br><br>
+As Salvador delves deeper into the labyrinth of his psyche, he unearths truths that challenge the very fabric of reality itself. But as he pursues the elusive promise of freedom, one question remains: What is the true cost of chasing one's dreams?
+            </p>
+            <form action="{% url 'create-checkout-session' new_code %}" method="POST">
+                {% csrf_token %}
+                <button class="btn-center btn btn-dark text-light px-5 mb-3 text-center py-3 mt-2 rounded-pill"  style="font-size:16px; margin-right: 14px" type="submit" id="checkout-button"><b>Buy With Card</b></button>
+                {% if code == '1' %}
+                
+                <a href="{% url 'checkout_crypto' new_code  %}" class="btn btn-light text-dark px-5 py-3 mb-3 mt-2 border-dark rounded-pill"  style="font-size:16px"><b>Buy With Crypto</b></a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

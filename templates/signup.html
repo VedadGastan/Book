@@ -1,0 +1,137 @@
+{% extends "base.html" %} {% load static %} {% block title %}Sign Up {% endblock title %} {% block body %}
+<div class="filler bg-dark"></div>
+
+<link
+  rel="stylesheet"
+  href="{% static './fonts/material-icon/css/material-design-iconic-font.min.css' %}"
+/>
+<link rel="stylesheet" href=" {% static './css/forms.css' %} " />
+
+<section class="signup my-5">
+  <div class="container2">
+    <div class="signup-content">
+      <div class="signup-form">
+        <h2 class="form-title">Sign up</h2>
+        <form method="POST" class="register-form" id="register-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name"
+              ><i class="zmdi zmdi-account material-icons-name"></i
+            ></label>
+            {{form.username}}
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email"></i></label>
+            {{form.email}}
+          </div>
+          <div class="form-group">
+            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+            {{form.password1}}
+          </div>
+          <div class="form-group">
+            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+            {{form.password2}}
+          </div>
+          <div class="form-group">
+            <label for="country"><i class="zmdi zmdi-lock-outline"></i></label>
+            <select name="country" class="country" id="country">
+              <option
+                value=""
+                label="Select a country ... "
+                selected="selected"
+              >
+                Select a country...
+              </option>
+              <option value="AU" label="Australia">Australia</option>
+              <option value="AT" label="Austria">Austria</option>
+              <option value="BE" label="Belgium">Belgium</option>
+              <option value="BR" label="Brazil">Brazil</option>
+              <option value="BG" label="Bulgaria">Bulgaria</option>
+              <option value="CA" label="Canada">Canada</option>
+              <option value="HR" label="Croatia">Croatia</option>
+              <option value="CY" label="Cyprus">Cyprus</option>
+              <option value="CZ" label="Czech Republic">Czech Republic</option>
+              <option value="DK" label="Denmark">Denmark</option>
+              <option value="EE" label="Estonia">Estonia</option>
+              <option value="FI" label="Finland">Finland</option>
+              <option value="FR" label="France">France</option>
+              <option value="DE" label="Germany">Germany</option>
+              <option value="GI" label="Gibraltar">Gibraltar</option>
+              <option value="GR" label="Greece">Greece</option>
+              <option value="HU" label="Hungary">Hungary</option>
+              <option value="IE" label="Ireland">Ireland</option>
+              <option value="IT" label="Italy">Italy</option>
+              <option value="JP" label="Japan">Japan</option>
+              <option value="LV" label="Latvia">Latvia</option>
+              <option value="LI" label="Liechtenstein">Liechtenstein</option>
+              <option value="LT" label="Lithuania">Lithuania</option>
+              <option value="LU" label="Luxembourg">Luxembourg</option>
+              <option value="MT" label="Malta">Malta</option>
+              <option value="MX" label="Mexico">Mexico</option>
+              <option value="NL" label="Netherlands">Netherlands</option>
+              <option value="NZ" label="New Zealand">New Zealand</option>
+              <option value="NO" label="Norway">Norway</option>
+              <option value="PL" label="Poland">Poland</option>
+              <option value="PT" label="Portugal">Portugal</option>
+              <option value="RO" label="Romania">Romania</option>
+              <option value="SG" label="Singapore">Singapore</option>
+              <option value="SK" label="Slovakia">Slovakia</option>
+              <option value="SI" label="Slovenia">Slovenia</option>
+              <option value="ES" label="Spain">Spain</option>
+              <option value="SE" label="Sweden">Sweden</option>
+              <option value="CH" label="Switzerland">Switzerland</option>
+              <option value="AE" label="United Arab Emirates">
+                United Arab Emirates
+              </option>
+              <option value="GB" label="United Kingdom">United Kingdom</option>
+              <option value="US" label="United States">United States</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input
+              type="checkbox"
+              name="agree-term"
+              id="agree-term"
+              class="agree-term"
+              required
+            />
+            <label for="agree-term" class="label-agree-term"
+              ><span><span></span></span>I agree all statements in
+              <a href="#" class="term-service">Terms of service</a></label
+            >
+          </div>
+          <div class="form-group form-button">
+            <input
+              type="submit"
+              name="signup"
+              id="signup"
+              class="btn btn-dark test-light px-4 py-3 rounded-pill"
+              value="Register"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="signup-image">
+        <figure>
+          <img
+            src="{% static './images/signup-image.jpg' %}"
+            alt="sing up image"
+          />
+        </figure>
+        <a href="{% url 'login' %}" class="signup-image-link"
+          >I am already member</a
+        >
+        {{form.errors}}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var form_fields = document.getElementsByTagName("input");
+  form_fields[1].placeholder = "Username...";
+  form_fields[2].placeholder = "Email...";
+  form_fields[3].placeholder = "Enter password...";
+  form_fields[4].placeholder = "Re-enter Password...";
+</script>
+<script src="{% static './js/jquery.min.js' %}"></script>
+{% endblock body %}
