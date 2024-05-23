@@ -3,7 +3,15 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 792 612" style="enable-background:new 0 0 792 612;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#242424;stroke-width:30;stroke-miterlimit:10;}
+	.st0{fill:#242424;}
+	.st1{fill:none;stroke:#242424;stroke-width:32;stroke-miterlimit:10;}
 </style>
-<polygon class="st0" points="392.3,18 97.9,390.7 527.1,594 627.7,132 156.4,130.9 256.1,594 685.2,390.7 "/>
+<circle class="st0" cx="396" cy="306" r="93.4"/>
+<g>
+	<polygon class="st1" points="396,27.4 166.9,137.8 110.3,385.7 268.8,584.6 523.2,584.6 681.7,385.7 625.1,137.8 	"/>
+	<polyline class="st1" points="625.1,137.8 396,306 396,27.4 	"/>
+	<polyline class="st1" points="523.2,584.6 396,306 681.7,385.7 	"/>
+	<polyline class="st1" points="110.3,385.7 396,306 268.8,584.6 	"/>
+	<line class="st1" x1="166.9" y1="137.8" x2="396" y2="306"/>
+</g>
 </svg>
