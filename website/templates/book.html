@@ -9,25 +9,42 @@
 <div class="filler bg-dark"></div>
 
 <div class="book bg-light py-5">
-    <div class="container row align-items-center mx-auto">
-        <div class="col d-flex animate fadeIn">
-            <img class="book" src="{% static './images/Din - Front.png' %}" alt="book">
+    <div class="container row align-items-center mx-auto position-relative">
+        <div class="col d-flex animate fadeIn position-relative">
+            
+            <div class="book-wrapper">
+                <img src="{% static './images/Din - Front.png' %}" alt="book" class="book">
+                <a class="overlay-btn" onclick="openPreview()">
+                    <span class="btn-text btn px-5 mb-3 text-center py-3 mt-2 rounded-pill">Preview Book</span>
+                </a>
+            </div>
+            
+            <!-- Separate button for mobile view -->
+            <div class="mobile-preview-button">
+                <a class="btn btn-light text-dark px-5 py-3 mb-3 mt-2 border-dark rounded-pill"  style="font-size:16px" onclick="openPreview()">
+                    Preview Book
+                </a>
+            </div>
+            
         </div>
         <div class="col animate fadeIn">
             <h1 class="h1">The Dreamer</h1>
-            <p class="pt-2 " ><b>Genre:</b> Surrealism, Contemporary Fantasy, Adventure, Philosophical, Psychological</p>
+            <p class="pt-2 " ><b>Genre:</b> Surrealism, Contemporary Fiction, Adventure, Philosophical, Psychological</p>
             <hr class="divider-dark pb-3">
             <p class="pb-2">
-                In the surreal realm of <i>The Dreamer</i>, Salvador, a young man teetering on the brink of adulthood, grapples with the suffocating weight of societal expectations and familial obligations. But within the depths of his own mind, a yearning for liberation sparks an odyssey of universal proportions.
-<br><br>
-From the ethereal landscapes of his dreams to the haunting depths of his subconscious, Salvador's journey blurs the lines between reality and fantasy. Guided by enigmatic figures and haunted by his deepest fears, he confronts the sinister entity Hatman in a battle for his very soul.
-<br><br>
-As Salvador delves deeper into the labyrinth of his psyche, he unearths truths that challenge the very fabric of reality itself. But as he pursues the elusive promise of freedom, one question remains: What is the true cost of chasing one's dreams?
+                In <i>The Dreamer</i>, Salvador is a young man standing at the crossroads between adolescence and adulthood, struggling under the crushing weight of expectations from society and his very own family. But inside his restless mind, a burning desire for freedom sets off a journey that’s anything but ordinary.<br>
+                <br>
+
+As Salvador navigates the surreal landscapes of his dreams and confronts the shadows of his fears, he finds himself locked in a fierce battle with the sinister Hatman, a strange force threatening to claim his very soul.<br>
+<br>
+
+As Salvador ventures through the shifting doorways of his subconscious, he uncovers startling truths that challenge everything he thought he knew about reality. In his quest for freedom, he is forced to confront a pivotal question: What is the true cost of chasing one's dreams?
             </p>
             <p class="pb-2"><b>Word Count:</b> 77,777</p>
+
             <div class="price">
                 <h5 class="h5">Price:</h5>
-                <h2 class="pb-2 h1">$7.77</h2>
+                <h2 class="pb-2 h1">$0.99</h2>
             </div>
             <form action="{% url 'create-checkout-session' new_code %}" method="POST">
                 {% csrf_token %}
@@ -40,5 +57,161 @@ As Salvador delves deeper into the labyrinth of his psyche, he unearths truths t
         </div>
     </div>
 </div>
+
+<!-- Overlay for Book Preview PDF -->
+<div id="previewOverlay" class="overlay">
+    <div class="overlay-content">
+        <span class="close" onclick="closePreview()">&times;</span>
+        <h2>Book Preview</h2>
+        <!-- PDF Viewer -->
+        <iframe src="{% static './book/The Dreamer - Din Cosic.pdf' %}" width="100%" height="600px"></iframe>
+    </div>
+</div>
+
+<!-- JavaScript for Overlay -->
+<script>
+    function openPreview() {
+        document.getElementById("previewOverlay").style.display = "block";
+    }
+
+    function closePreview() {
+        document.getElementById("previewOverlay").style.display = "none";
+    }
+</script>
+
+<!-- CSS for Overlay and Button Styling -->
+<style>
+
+    /* Overlay for the book preview */
+    .overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+        z-index: 1000; /* Ensure it's on top */
+        overflow-y: auto; /* Allow scrolling if necessary */
+    }
+    
+    /* Content inside the overlay */
+    .overlay-content {
+        position: relative;
+        margin: 5% auto; /* Centered with margin */
+        padding: 10px;
+        background: #fff; /* White background for the content */
+        width: 80%; /* Width of the overlay content */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Box shadow */
+        border-radius: 5px; /* Rounded corners */
+        z-index: 1001; /* Ensure it's above the overlay */
+    }
+    
+    /* Styling for the iframe inside the overlay */
+    .overlay-content iframe {
+        width: 100%; /* Full width of the container */
+        height: 75vh; /* 75% of viewport height */
+        border: none; /* Remove border */
+    }
+    
+    /* Close button styling */
+    .close {
+        position: absolute;
+        top: 5px;
+        right: 25px;
+        font-size: 30px;
+        color: #000; /* Close button color */
+        cursor: pointer; /* Cursor pointer */
+    }
+    
+    /* Wrapper for the book image */
+    .book-wrapper {
+        position: relative; /* Position relative for the overlay button */
+        display: inline-block; /* Inline-block for wrapping */
+        cursor: pointer; /* Pointer cursor on hover */
+    }
+    
+    /* Styling for the book image */
+    .book {
+        max-width: 100%; /* Responsive width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Block display */
+    }
+    
+    /* Overlay button on the book image */
+    .overlay-btn {
+        position: absolute; /* Position absolute */
+        top: 0; /* Top corner */
+        left: 0; /* Left corner */
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+        color: white; /* Button text color */
+        text-align: center; /* Center text */
+        font-size: 20px; /* Font size */
+        display: flex; /* Flex display for centering */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        opacity: 0; /* Start hidden */
+        transition: opacity 0.3s ease, background-color 0.3s ease; /* Transition effects */
+        text-decoration: none; /* No underline */
+    }
+    
+    /* Show the overlay button on hover */
+    .book-wrapper:hover .overlay-btn {
+        opacity: 1; /* Show on hover */
+        background-color: rgba(0, 0, 0, 0.7); /* Slightly darker on hover */
+    }
+    
+    /* Button text styling */
+    .btn-text {
+        pointer-events: none; /* Prevent events on the text */
+        border: 2px solid white; /* White border around the button text */
+        padding: 10px; /* Padding for the button text */
+        border-radius: 5px; /* Rounded corners */
+        color: white; /* Text color */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+    
+    /* Adjust button text background on hover */
+    .overlay-btn:hover .btn-text {
+        background-color: rgba(255, 255, 255, 0.2); /* Light white background on hover */
+    }
+
+        /* Mobile Preview Button */
+    .mobile-preview-button {
+        display: none; /* Hide by default */
+        text-align: center; /* Center the button */
+        margin-top: 10px; /* Add spacing between the image and the button */
+    }
+
+    /* Mobile Preview Button */
+        .mobile-preview-button {
+            display: none; /* Hide by default */
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .overlay-content iframe {
+                height: 85vh;
+                width: 100%; /* Full width of the container */
+                border: none; /* Remove border */
+            }
+            
+            .book .d-flex{
+                display: block !important;
+            }
+            .overlay-btn {
+                display: none; /* Hide overlay button on mobile */
+            }
+            .mobile-preview-button {
+                display: block; /* Show mobile button */
+                margin-top: 10px; /* Add spacing between the image and the button */
+            }
+        }
+
+
+    
+</style>
 
 {% endblock body %}

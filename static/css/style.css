@@ -466,6 +466,10 @@ a.login_btn:hover {
     .row {
         flex-direction: column;
     }
+
+    .col {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 300px) {
