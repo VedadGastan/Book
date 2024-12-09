@@ -8,8 +8,9 @@ import stripe
 from django.contrib.auth.decorators import login_required
 import json
 import requests
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.utils.html import strip_tags
+import os
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -23,17 +24,24 @@ def checkout(request, new_code):
                 mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1PEcXnFUBznuiHclofs3NxFA',
+                        'price': 'price_1P8OtFFUBznuiHclMpN8uRhM',
                         'quantity': 1,
                     },
                 ],
 
-                success_url = domain + '/success/' + str(new_code),
+                success_url=domain + '/success/' + str(new_code) + '?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url = domain + '/cancel/' + str(new_code),
             )
         return redirect(checkout_session.url, code=303)
 
 def success(request, new_code):
+    session_id = request.GET.get('session_id')
+    if not session_id:
+        return render(request, "error.html", {"message": "Session ID is missing."})
+    
+    checkout_session = stripe.checkout.Session.retrieve(session_id)
+    customer_email = checkout_session.customer_details.email
+
     if NewUser.objects.filter(secondary_code=new_code).exists():
         user = NewUser.objects.get(secondary_code=new_code)
         price = settings.AFFILIATE_PERCENTAGE * 0.5 * 100
@@ -41,6 +49,31 @@ def success(request, new_code):
         user.balance += price
         user.sales += 1
         user.save()
+
+        pdf_path = os.path.join(settings.BASE_DIR, 'static', 'book', 'The Dreamer - Din Cosic.pdf')
+        
+        subject = 'Payment Confirmation - Din Cosic'
+        html_message = f"""
+        <p>Hi, thank you for your purchase! You can find your copy of the book attached below.</p>
+        """
+        plain_message = strip_tags(html_message)
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [customer_email]
+        
+        if os.path.exists(pdf_path):
+            with open(pdf_path, 'rb') as pdf_file:
+                email = EmailMessage(
+                    subject,
+                    plain_message,
+                    email_from,
+                    recipient_list,
+                )
+                email.attach('The Dreamer - Din Cosic.pdf', pdf_file.read(), 'static/book/')
+                email.content_subtype = 'html'
+                email.send()
+        else:
+            return render(request, "error.html", {"message": "Book PDF not found."})
+
     return render(request, "success.html", {})
 
 def cancel(request, new_code):
@@ -244,7 +277,3 @@ def checkout_crypto(request, new_code):
     response = requests.request("POST", url, headers=headers, data=payload)
     url = json.loads(response.text)["invoice_url"]
     return redirect(url)
-
-
-
-

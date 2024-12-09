@@ -32,7 +32,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 PAYMENT_URL = 'https://buy.stripe.com/test_bIY29ObGjg4BcBGbII'
-ALLOWED_HOSTS = ['dincosic.com']
+ALLOWED_HOSTS = ['dincosic.com', '127.0.0.1']
 
 
 # Application definition
@@ -82,13 +82,17 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dincosic_book',
-        'USER': 'dincosic_book_user',
-        'PASSWORD': 'sifrazadinovwebsite2024777',
-        'HOST': 'localhost',
-        'PORT': '3306',
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'dincosic_book',
+    #    'USER': 'dincosic_book_user',
+    #    'PASSWORD': 'sifrazadinovwebsite2024777',
+    #    'HOST': 'localhost',
+    #    'PORT': '3306',
+    #}
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
     }
 }
 
@@ -128,11 +132,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/dincosic/public_html/static'
+#STATIC_ROOT = '/home/dincosic/public_html/static'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-#STATICFILES_DIRS = [
-#    os.path.join (BASE_DIR / "static")
-#]
+#TRABA KOMENTIRAT!
+STATICFILES_DIRS = [
+    os.path.join (BASE_DIR / "static")
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -141,9 +147,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'app.NewUser'
 
-STRIPE_PUBLISHABLE_KEY = 'pk_live_51OmFfOFUBznuiHclaHErh0JN6MveVHTH9wcIppzN8UE21Qof6uinxj9PKDcWk2S75RQCM6wj5yk4OWMJHhBD68FN00uY0k9CGH'
-STRIPE_SECRET_KEY = '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'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OmFfOFUBznuiHcl2ehY3QBoU5DtI3bK5Gt7tXKqVvui6K9C9LTgrVz0DsK2xFlpRP7rXpMC9RIUZoCexpm0chmI00L9y0ZjBL'
+STRIPE_SECRET_KEY = 'sk_test_51OmFfOFUBznuiHclpgWvivCC1IBMKB3IQMs60F0aB9Yt1XF7pbvWsiJ8ZlquDoRDUgbWcCD3EXuQztre7YM7V4zo00g3H1xKrq'
 STRIPE_WEBHOOK_SECRET = ''
 NOWPAYMENTS_API_KEY = '4123EXJ-H4VM3QD-M3DPD0W-Q6BB7VZ'
 AFFILIATE_PERCENTAGE = 0.5
-DOMAIN = 'https://dincosic.com'
+DOMAIN = 'http://127.0.0.1:8000'
