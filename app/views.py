@@ -260,6 +260,7 @@ def checkout_crypto(request, new_code):
     payload = json.dumps({
         "price_amount": 7.77,
         "price_currency": "usd",
+        "pay_currency" : "SOL",
         "order_id": "RGDBP-"+rand,
         "order_description": "The Dreamer",
         "ipn_callback_url": "https://nowpayments.io",
